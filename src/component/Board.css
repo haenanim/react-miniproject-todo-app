@@ -1,0 +1,24 @@
+.board {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 15px;
+  width: 400px;
+  background-color: thistle;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.title {
+  background-color: rgb(125, 196, 227);
+  padding: 15px;
+  margin-bottom: 15px;
+  font-size: 40px;
+}
+.todo-title {
+  background-color: rgb(199, 219, 245);
+  margin-bottom: 15px;
+  font-size: 20px;
+}
