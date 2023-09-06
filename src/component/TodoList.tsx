@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react';
 type Todo = { todoListId: number; content: string };
 export default function TodoList() {
   const [contents, setContents] = useState<Todo[]>([]);
+  async function fatchData() {
+    return await axios.get('http://localhost:8080/get/all').then((res) => {
+      console.log(res);
+      setContents(res.data);
+    });
+  }
   useEffect(() => {
-    async function fatchData() {
-      return await axios.get('http://localhost:8080/get/all').then((res) => {
-        console.log(res);
-        setContents(res.data);
-      });
-    }
     fatchData();
   }, []);
 
@@ -27,6 +27,7 @@ export default function TodoList() {
       })
       .then((res: any) => {
         console.log('성공');
+        fatchData();
       })
       .catch((err: any) => {
         console.log('실패');
@@ -36,7 +37,6 @@ export default function TodoList() {
 
   function checkContetns() {
     console.log(contents);
-    // console.log(result);
   }
   return (
     <div>
