@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import TodoItem from './TodoItem';
 
 type Todo = { todoListId: number; content: string };
 export default function TodoList() {
@@ -9,6 +10,9 @@ export default function TodoList() {
       console.log(res);
       setContents(res.data);
     });
+  }
+  function deleteItem(idx: any) {
+    fatchData();
   }
   useEffect(() => {
     fatchData();
@@ -41,11 +45,15 @@ export default function TodoList() {
   return (
     <div>
       <ul>
-        {contents.map((x) => {
+        {contents.map((x, y) => {
           return (
-            <li key={x.todoListId}>
-              {x.todoListId}, {x.content}
-            </li>
+            <TodoItem
+              key={y}
+              todoId={x.todoListId}
+              content={x.content}
+              number={y + 1}
+              deleteItem={deleteItem}
+            ></TodoItem>
           );
         })}
       </ul>
@@ -54,3 +62,4 @@ export default function TodoList() {
     </div>
   );
 }
+// 삭제, 가능하면 업데이트
