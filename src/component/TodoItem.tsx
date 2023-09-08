@@ -17,7 +17,7 @@ export default function TodoItem({
       .delete(`http://localhost:8080/delete/${todoId}`)
       .then((res: any) => {
         console.log('성공');
-        deleteItem(todoId);
+        deleteItem();
       })
       .catch((err: any) => {
         console.log('실패');
