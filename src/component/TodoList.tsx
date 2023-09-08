@@ -1,17 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import TodoItem from './TodoItem';
+import { type } from 'os';
 
 type Todo = { todoListId: number; content: string };
 export default function TodoList() {
   const [contents, setContents] = useState<Todo[]>([]);
+  const [newContent, setNewContent] = useState<string>('');
+
   async function fatchData() {
     return await axios.get('http://localhost:8080/get/all').then((res) => {
       console.log(res);
       setContents(res.data);
     });
   }
-  function deleteItem(idx: any) {
+  function deleteItem() {
     fatchData();
   }
   useEffect(() => {
@@ -25,10 +28,12 @@ export default function TodoList() {
   }, [contents]);
 
   function sendPost() {
+    const newobj = {
+      content: newContent,
+    };
+    console.log(JSON.stringify(newobj));
     axios
-      .post('http://localhost:8080/create', {
-        content: 'first post',
-      })
+      .post('http://localhost:8080/create', newobj)
       .then((res: any) => {
         console.log('성공');
         fatchData();
@@ -40,7 +45,11 @@ export default function TodoList() {
   }
 
   function checkContetns() {
-    console.log(contents);
+    const newarr = {
+      contents: { newContent },
+    };
+
+    console.log(newarr);
   }
   return (
     <div>
@@ -57,9 +66,14 @@ export default function TodoList() {
           );
         })}
       </ul>
+      <input
+        type="text"
+        onChange={(e) => {
+          setNewContent(e.target.value);
+        }}
+      />
       <button onClick={sendPost}>보내기</button>
       <button onClick={checkContetns}>확인하기</button>
     </div>
   );
 }
-// 삭제, 가능하면 업데이트
