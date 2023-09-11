@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './TodoItem.css';
 interface props {
   todoId?: any;
   content?: any;
@@ -25,7 +26,7 @@ export default function TodoItem({
       });
   }
   return (
-    <li>
+    <li className="todo-item">
       <div>
         {number}. {content}
       </div>

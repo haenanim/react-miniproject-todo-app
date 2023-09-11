@@ -1,0 +1,5 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(208, 240, 255);
+}

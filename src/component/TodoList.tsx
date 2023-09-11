@@ -73,7 +73,7 @@ export default function TodoList() {
         }}
       />
       <button onClick={sendPost}>보내기</button>
-      <button onClick={checkContetns}>확인하기</button>
+      {/* <button onClick={checkContetns}>확인하기</button> */}
     </div>
   );
 }
