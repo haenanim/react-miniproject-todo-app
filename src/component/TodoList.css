@@ -1,5 +1,4 @@
 .input-section {
-  background-color: rgb(216, 216, 216);
   display: flex;
 }
 
@@ -11,5 +10,10 @@
 .send-button {
   width: 80px;
   background-color: rgb(98, 187, 255);
-  border-color: rgb(111, 171, 223);
+  border: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.send-button:hover {
+  background-color: rgb(207, 234, 255);
 }
