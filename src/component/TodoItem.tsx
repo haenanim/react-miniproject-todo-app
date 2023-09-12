@@ -30,7 +30,9 @@ export default function TodoItem({
       <div>
         {number}. {content}
       </div>
-      <button onClick={sendPost}>X</button>
+      <button className="delete-btn" onClick={sendPost}>
+        X
+      </button>
     </li>
   );
 }
