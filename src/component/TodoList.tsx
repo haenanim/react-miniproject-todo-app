@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TodoItem from './TodoItem';
-import { type } from 'os';
+import './TodoList.css';
 
 type Todo = { todoListId: number; content: string };
 export default function TodoList() {
@@ -10,7 +10,6 @@ export default function TodoList() {
 
   async function fatchData() {
     return await axios.get('http://localhost:8080/get/all').then((res) => {
-      console.log(res);
       setContents(res.data);
     });
   }
@@ -21,21 +20,15 @@ export default function TodoList() {
     fatchData();
   }, []);
 
-  useEffect(() => {
-    for (let i = 0; i < contents.length; ++i) {
-      console.log(contents[i].content);
-    }
-  }, [contents]);
-
   function sendPost() {
     const newobj = {
       content: newContent,
     };
-    console.log(JSON.stringify(newobj));
     axios
       .post('http://localhost:8080/create', newobj)
       .then((res: any) => {
         console.log('성공');
+        setNewContent('');
         fatchData();
       })
       .catch((err: any) => {
@@ -44,15 +37,8 @@ export default function TodoList() {
       });
   }
 
-  function checkContetns() {
-    const newarr = {
-      contents: { newContent },
-    };
-
-    console.log(newarr);
-  }
   return (
-    <div>
+    <div className="todo-list">
       <ul>
         {contents.map((x, y) => {
           return (
@@ -66,14 +52,18 @@ export default function TodoList() {
           );
         })}
       </ul>
-      <input
-        type="text"
-        onChange={(e) => {
-          setNewContent(e.target.value);
-        }}
-      />
-      <button onClick={sendPost}>보내기</button>
-      {/* <button onClick={checkContetns}>확인하기</button> */}
+      <form className="input-section">
+        <input
+          className="input"
+          type="text"
+          onChange={(e) => {
+            setNewContent(e.target.value);
+          }}
+        />
+        <button className="send-button" type="submit" onClick={sendPost}>
+          보내기
+        </button>
+      </form>
     </div>
   );
 }

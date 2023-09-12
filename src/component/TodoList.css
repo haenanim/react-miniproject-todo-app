@@ -1,0 +1,15 @@
+.input-section {
+  background-color: rgb(216, 216, 216);
+  display: flex;
+}
+
+.input {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+.send-button {
+  width: 80px;
+  background-color: rgb(98, 187, 255);
+  border-color: rgb(111, 171, 223);
+}
