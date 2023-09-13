@@ -22,11 +22,10 @@ export default function TodoList() {
   // input 칸에 입력한 newContent 내용으로 서버에 전송
   function sendPost(e: any) {
     e.preventDefault();
-    const newobj = {
-      content: newContent,
-    };
     axios
-      .post('http://localhost:8080/create', newobj)
+      .post('http://localhost:8080/create', {
+        content: newContent,
+      })
       .then((res: any) => {
         console.log('성공');
         setNewContent('');
